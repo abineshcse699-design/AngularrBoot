@@ -1,0 +1,136 @@
+<h1>iuqbui</h1>
+
+
+
+<div class="row">
+
+@if(isNewUser==false){
+  <div class="col-12">
+    <div class="card">
+      <div class="card - header bg-warrior">
+        <div class="row">
+        <div class="col-6">
+        <h6>user list</h6>
+     </div>
+     <div class="col-6 text -end" >
+      <button class="btn btn-success"  (click)="changeview()" >btn-success</button>
+      </div>
+
+      </div>
+
+    </div>
+  </div>
+ </div>
+
+
+ <div class="card-body">
+  <div class="row">
+     @for (item of userList; track $index) {
+
+    <div class="col-3"></div>
+
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{item.fname}} {{item.lname}}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">{{item.uname}} </h6>
+    <p class="card-text">{{item.city}} , {{item.state}}, {{item.zipcode}} </p>
+    <a  class="card-link text-success" (click)="onEdit(item)">Edit</a>
+    <a  class="card-link text-danger"(click)="onDelete(item.userId)">delete</a>
+  </div>
+</div>
+
+     }
+ </div>
+
+  </div>
+
+
+} @else {
+
+
+  <div class="card-body">
+    <div class="col-12">
+
+    <div class="card">
+      <div class="card - header bg-warrior">
+        <div class="row">
+        <div class="col-6">
+        <h6>new user</h6>
+     </div>
+     <div class="col-6 text -end" >
+      <button class="btn btn-success" (click)="changeview()" >submit</button>
+      </div>
+      </div>
+
+
+    </div>
+  </div>
+  </div>
+
+  </div>
+  <div>
+    <form class="row g-3">
+  <div class="col-md-4">
+    <label for="validationDefault01" class="form-label">First name</label>
+    <input type="text" [(ngModel)]="userObj.fname" name="fname" class="form-control" id="validationDefault01" value="Mark" required>
+  </div>
+  <div class="col-md-4">
+    <label for="validationDefault02" class="form-label">Last name</label>
+
+    <input type="text" [(ngModel)]="userObj.lname" name="lname" class=" form-control"  id="validationDefault02" value="Otto" required>
+  </div>
+  <div class="col-md-4">
+    <label for="validationDefaultUsername" class="form-label">Username</label>
+    <div class="input-group">
+      <span class="input-group-text" id="inputGroupPrepend2">@</span>
+      <input type="text" [(ngModel)]="userObj.uname" name="uname" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="validationDefault03" class="form-label">City</label>
+    <input type="text"  [(ngModel)]="userObj.city" name="city" class="form-control" id="validationDefault03" required>
+  </div>
+  <div class="col-md-3">
+    <label for="validationDefault04" class="form-label">State</label>
+    <select class="form-select" id="validationDefault04" required>
+      <option selected disabled value="">Choose...</option>
+      <option>
+        hanba
+      </option>
+      <option>hong konh</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label for="validationDefault05" class="form-label">Zip</label>
+    <input type="text" [(ngModel)]="userObj.zipcode" class="form-control" id="validationDefault05" required>
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" [(ngModel)]="userObj.isAgree" type="checkbox" value="" id="invalidCheck2" required>
+      <label class="form-check-label" for="invalidCheck2">
+        Agree to terms and conditions
+      </label>
+    </div>
+  </div>
+  <div class="col-12">
+    {{userObj.userId}}
+    @if(userObj.userId==0){
+      <button class="btn btn-primary" type="submit" (click)="onsave()">Submit form</button>
+
+    }@else {
+      <button class="btn btn-primary" type="submit" (click)="onUpdate()">update</button>
+    }
+
+  </div>
+</form>
+  </div>
+
+
+
+}
+
+ </div>
+
+
+
+<router-outlet/>

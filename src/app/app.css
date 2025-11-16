@@ -1,0 +1,8 @@
+.card{
+  display: flex;
+  justify-content:space-around;
+  /* width: 100%; */
+}
+.row{
+  gap: 20px;
+}
